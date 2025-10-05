@@ -1,0 +1,11 @@
+{% style %}
+@media (max-width: {{ settings.page_container | divided_by: 16.0 }}rem) {
+    {% if template == 'index' %}
+    #products_slider {
+      max-width: calc(100dvw - (var(--gap) * 2));
+      margin-left: var(--gap);
+      margin-right: var(--gap);
+    }
+    {% endif %}
+  }
+{% endstyle %}
