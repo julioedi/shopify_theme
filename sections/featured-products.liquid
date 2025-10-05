@@ -1,0 +1,52 @@
+{% schema %}
+{
+  "name": "Productos destacados",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección",
+      "default": "Nuestros productos favoritos"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Producto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Seleccionar producto"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Productos destacados",
+      "category": "Productos"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="featured-products" style="padding: 2rem;">
+  <h2 style="text-align: center;">{{ section.settings.title }}</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+    {% for block in section.blocks %}
+      {% assign product = all_products[block.settings.product] %}
+      {% if product %}
+        <div style="width: 200px; border: 1px solid #eee; padding: 1rem; text-align: center;">
+          <a href="{{ product.url }}">
+            <img width="" height="" src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}" style="width: 100%; height: auto;">
+          </a>
+          <h3 style="margin: 0.5rem 0;">{{ product.title }}</h3>
+          <p>{{ product.price | money }}</p>
+          <a href="{{ product.url }}" style="background: #000; color: #fff; padding: 0.5rem 1rem; display: inline-block; text-decoration: none;">Ver producto</a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,272 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Skeleton",
+    "theme_version": "0.1.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "t:labels.identity",
+    "settings": [
+      {
+        "type": "text",
+        "id": "store_name",
+        "label": "t:labels.store_name"
+      },
+      {
+        "type": "header",
+        "content": "t:labels.logo.title"
+      },
+      {
+        "type": "image_picker",
+        "id": "identity_logo_light",
+        "label": "t:labels.logo.regular"
+      },
+      
+      {
+        "type": "image_picker",
+        "id": "identity_logo_dark",
+        "label": "t:labels.logo.dark"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "t:labels.logo.fav"
+      },
+    ]
+  },
+  {
+    "name": "t:layout.title",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_primary_font",
+        "default": "work_sans_n4",
+        "label": "t:layout.font_family"
+      },
+      {
+        "type": "range",
+        "id": "page_gap",
+        "min": 4,
+        "max": 96,
+        "step": 4,
+        "unit": "px",
+        "label": "t:layout.gap",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "page_container",
+        "min": 960,
+        "max": 1920,
+        "step": 20,
+        "unit": "px",
+        "label": "t:layout.container",
+        "default": 1440
+      },
+      {
+        "type": "range",
+        "id": "page_body_fontsize",
+        "min": 8,
+        "max": 20,
+        "step": 2,
+        "unit": "px",
+        "label": "t:layout.font_size",
+        "default": 16
+      },
+    ]
+  },
+  {
+    "name": "t:colors.title",
+    "settings": [
+      {
+        "type": "color",
+        "id": "page_background",
+        "label": "Body",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "t:colors.primary"
+      },
+      {
+        "type": "color",
+        "id": "primary_50",
+        "label": "50",
+        "default": "#e6f0fb"
+      },
+      {
+        "type": "color",
+        "id": "primary_100",
+        "label": "100",
+        "default": "#c0d9f8"
+      },
+      {
+        "type": "color",
+        "id": "primary_200",
+        "label": "200",
+        "default": "#8fbff4"
+      },
+      {
+        "type": "color",
+        "id": "primary_300",
+        "label": "300",
+        "default": "#5e9eec"
+      },
+      {
+        "type": "color",
+        "id": "primary_400",
+        "label": "400",
+        "default": "#2e7cd8"
+      },
+      {
+        "type": "color",
+        "id": "primary_500",
+        "label": "500",
+        "default": "#1773cf"
+      },
+      {
+        "type": "color",
+        "id": "primary_600",
+        "label": "600",
+        "default": "#145ea6"
+      },
+      {
+        "type": "color",
+        "id": "primary_700",
+        "label": "700",
+        "default": "#104774"
+      },
+      {
+        "type": "color",
+        "id": "primary_800",
+        "label": "800",
+        "default": "#0b2f45"
+      },
+      {
+        "type": "color",
+        "id": "primary_900",
+        "label": "900",
+        "default": "#081f2d"
+      },
+      {
+        "type": "header",
+        "content": "t:colors.secondary"
+      },
+      {
+        "type": "color",
+        "id": "secondary_50",
+        "label": "50",
+        "default": "#fff5eb"
+      },
+      {
+        "type": "color",
+        "id": "secondary_100",
+        "label": "100",
+        "default": "#ffd9b8"
+      },
+      {
+        "type": "color",
+        "id": "secondary_200",
+        "label": "200",
+        "default": "#ffb87a"
+      },
+      {
+        "type": "color",
+        "id": "secondary_300",
+        "label": "300",
+        "default": "#ff9a36"
+      },
+      {
+        "type": "color",
+        "id": "secondary_400",
+        "label": "400",
+        "default": "#e37c0e"
+      },
+      {
+        "type": "color",
+        "id": "secondary_500",
+        "label": "500",
+        "default": "#b5600b"
+      },
+      {
+        "type": "color",
+        "id": "secondary_600",
+        "label": "600",
+        "default": "#89470a"
+      },
+      {
+        "type": "color",
+        "id": "secondary_700",
+        "label": "700",
+        "default": "#5d2f07"
+      },
+      {
+        "type": "color",
+        "id": "secondary_800",
+        "label": "800",
+        "default": "#3b1c04"
+      },
+      {
+        "type": "color",
+        "id": "secondary_900",
+        "label": "900",
+        "default": "#251303"
+      },
+      {
+        "type": "header",
+        "content": "t:colors.validation.title"
+      },
+      {
+        "type": "color",
+        "id": "validation_error",
+        "label": "t:colors.validation.error",
+        "default": "#AE1C22"
+      },
+      {
+        "type": "color",
+        "id": "validation_error_light",
+        "label": "t:colors.validation.error_light",
+        "default": "#FAE5E5"
+      },
+      {
+        "type": "color",
+        "id": "validation_success",
+        "label": "t:colors.validation.success",
+        "default": "#2A872A"
+      },
+      {
+        "type": "color",
+        "id": "validation_success_light",
+        "label": "t:colors.validation.success_light",
+        "default": "#F0FAF5"
+      },
+      {
+        "type": "color",
+        "id": "validation_info",
+        "label": "t:colors.validation.info",
+        "default": "#224497"
+      },
+      {
+        "type": "color",
+        "id": "validation_info_light",
+        "label": "t:colors.validation.info_light",
+        "default": "#EDF2FE"
+      },
+      {
+        "type": "color",
+        "id": "validation_warning",
+        "label": "t:colors.validation.warning",
+        "default": "#FFEB99"
+      },
+      {
+        "type": "color",
+        "id": "validation_warning_light",
+        "label": "t:colors.validation.warning_light",
+        "default": "#F9D9A9"
+      }
+    ]
+  }
+]

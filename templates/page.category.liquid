@@ -1,0 +1,7 @@
+{% assign slug = collection.handle %}
+<h1>Categoría: {{ slug }}</h1>
+<ul>
+  {% for product in collection.products %}
+    <li>{{ product.title }}</li>
+  {% endfor %}
+</ul>

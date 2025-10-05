@@ -1,0 +1,33 @@
+{% style %}
+  {% # Loads all font variantions with display: swap %}
+  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
+  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+
+  :root {
+    --body: {{ settings.page_background | "#fff" }};
+    --transition:0.3s ease-in all;
+    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
+    --mso: url({{ 'fonts/mso.woff2' | asset_url }}) format('woff2');
+    --mws: {{ settings.page_container | divided_by: 16.0 }}rem;
+    --gap: {{ settings.page_gap | divided_by: 16.0 }}rem;
+    --col-padding: {{ settings.page_gap | divided_by: 32.0 }}rem;
+    --text-size: {{ settings.page_body_fontsize | divided_by: 16.0 }}rem;
+    {%- assign color_levels = "50,100,200,300,400,500,600,700,800,900" | split: "," -%}
+    {%- assign palettes = "primary,secondary" | split: "," -%}
+
+    {%- for palette in palettes -%}
+      {%- for level in color_levels -%}
+        {%- assign color_id = palette | append: "_" | append: level -%}
+        --{{ palette }}-{{ level }}: {{ settings[color_id] }};
+      {%- endfor -%}
+    {%- endfor -%}
+
+    {%- assign validation_colors = "validation_error,validation_error_light,validation_success,validation_success_light,validation_info,validation_info_light,validation_warning,validation_warning_light" | split: "," -%}
+
+    {%- for val_color in validation_colors -%}
+      --{{ val_color | replace: "_", "-" }}: {{ settings[val_color] }};
+    {%- endfor -%}
+  }
+{% endstyle %}

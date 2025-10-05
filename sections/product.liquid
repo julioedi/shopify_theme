@@ -1,0 +1,163 @@
+{% comment %}
+  This section is used in the product template to render product page with
+  media, content, and add-to-cart form.
+
+  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
+{% endcomment %}
+
+{% layout 'theme' %}
+<h1 class="product-title">{{ section.settings.sample }}</h1>
+<!-- Sección Principal del Producto -->
+<section class="product-page">
+  {% if section.settings.show_product_title %}
+    <h1 class="product-title">{{ product.title }}</h1>
+  {% endif %}
+
+  {% if section.settings.show_product_images %}
+    <div class="product-images">
+      {{ product.featured_image | img_url: '2048x2048' | img_tag}}
+    </div>
+  {% endif %}
+
+  {% if section.settings.show_product_description %}
+    <div class="product-description">
+      <p>{{ product.description }}</p>
+    </div>
+  {% endif %}
+
+  {% if section.settings.show_product_price %}
+    <div class="product-price">
+      <span>{{ product.price | money }}</span>
+    </div>
+  {% endif %}
+
+  {% if section.settings.show_product_variants %}
+    <div class="product-variants">
+      <label for="product-variants">Choose a variant:</label>
+      <select id="product-variants" name="id">
+        {% for variant in product.variants %}
+          <option value="{{ variant.id }}">
+            {{ variant.title }} - {{ variant.price | money }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  {% endif %}
+
+  {% if section.settings.show_add_to_cart_button %}
+    <div class="add-to-cart">
+      <button type="submit" class="add-to-cart-button">Add to Cart</button>
+    </div>
+  {% endif %}
+</section>
+
+<!-- Sección de Reseñas del Producto (si habilitado) -->
+{% if section.settings.show_related_products %}
+  <section class="related-products">
+    <h2>Related Products</h2>
+    <div class="product-list">
+      {% for related_product in collections[settings.related_products_collection].products %}
+        <div class="product-item">
+          <a href="{{ related_product.url }}">
+            {{ product.featured_image | img_url: 'small' | img_tag}}
+            <p>{{ related_product.title }}</p>
+            <span>{{ related_product.price | money }}</span>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+<!-- Sección de Reseñas (si habilitado) -->
+{% if section.settings.enable_reviews %}
+  <section class="product-reviews">
+    <h3>Customer Reviews</h3>
+    <div class="reviews">
+      {% for review in product.reviews %}
+        <div class="review">
+          <div class="review-stars">
+            {% for star in (1..5) %}
+              <span class="star {% if review.rating >= star %}filled{% endif %}">★</span>
+            {% endfor %}
+          </div>
+          <p>{{ review.content }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% comment %} 
+{% schema %}
+{
+  "name": "t:general.product",
+  "settings": [],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %} {% endcomment %}
+ 
+{% schema %}
+{
+  "name": "Product section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "label": "t:product.show_title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_description",
+      "label": "t:product.show_desc",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_images",
+      "label": "t:product.show_image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_variants",
+      "label": "t:product.show_var",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_price",
+      "label": "t:product.show_price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_add_to_cart_button",
+      "label": "t:product.show_add",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related_products",
+      "label": "t:product.show_related",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "related_products_count",
+      "label": "t:product.count",
+      "default": true
+    },
+  ],
+  "presets": [
+    {
+      "name": "Product",
+      "category": "Product"
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,44 @@
+<h1>Hola</h1>
+
+{% assign all_products = collections.all.products %}
+
+<ul>
+  {% for product in all_products %}
+    <li>
+      <a href="{{ product.url }}">
+        {{ product.title }}
+      </a>
+      <br>
+      Precio: {{ product.price | money }}
+    </li>
+  {% endfor %}
+</ul>
+
+
+
+{% schema %}
+{
+  "name": "Hello World",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Producto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Selecciona un producto"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "Hello World Template",
+      "category": "Demo"
+    }
+  ]
+}
+{% endschema %}

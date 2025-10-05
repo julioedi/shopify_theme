@@ -1,0 +1,26 @@
+{% unless customer %}
+  <div style="text-align:center; padding: 2rem; font-family: sans-serif;">
+    <h2>No te encuentras conectado</h2>
+    <p>Si ya tienes una cuenta, por favor <a href="{{ routes.account_login_url }}" style="color: #007bff; text-decoration: underline;">inicia sesión aquí</a>.</p>
+    <p>¿No tienes una cuenta? <a href="{{ routes.account_register_url }}" style="color: #007bff; text-decoration: underline;">Crea una ahora</a>.</p>
+  </div>
+{% else %}
+  <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 2rem;">
+    <h1>Hola, {{ customer.first_name }} 👋</h1>
+    <p>Bienvenido a tu cuenta.</p>
+
+    <h2>Mis pedidos</h2>
+    <ul>
+      {% for order in customer.orders %}
+        <li>
+          Pedido #{{ order.name }} - {{ order.created_at | date: "%d/%m/%Y" }} - {{ order.total_price | money }}
+          <a href="{{ order.order_status_url }}">Ver estado</a>
+        </li>
+      {% else %}
+        <li>No tienes pedidos aún.</li>
+      {% endfor %}
+    </ul>
+
+    <a href="{{ routes.account_logout_url }}" style="display:inline-block; margin-top:1rem; padding:0.5rem 1rem; background:#d9534f; color:#fff; border-radius:4px; text-decoration:none;">Cerrar sesión</a>
+  </div>
+{% endunless %}

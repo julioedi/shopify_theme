@@ -1,0 +1,60 @@
+{% doc %}
+  Renders a responsive image that might be wrapped in a link.
+
+  When `width`, `height` and `crop` are provided, the image will be rendered
+  with a fixed aspect ratio.
+
+  Serves as an example of how to use the `image_url` filter and `image_tag` filter
+  as well as how you can use LiquidDoc to document your code.
+
+  @param {string} id - id of the icon
+  @param {string} [url] - An optional destination URL for the image
+  @param {boolean} [filled] - if the icon need to be filled
+  @param {boolean} [rounded] - size of icon like small,big
+  @param {string} [name] - alt for anchor link, or name for button
+  @param {string} [class] - size of icon like small,big
+
+  @example
+  {% render 'image', id: "favorites" %}
+{% enddoc %}
+{% assign classname = 'icon_btn' %}
+
+{% if filled %}
+  {% assign classname = classname | append: ' filled' %}
+{% endif %}
+
+{% if class %}
+  {% assign classname = classname | append: ' ' | append: class %}
+{% endif %}
+
+{% if rounded %}
+  {% assign classname = classname | append: ' round' %}
+{% endif %}
+
+
+{% liquid
+  if url
+    assign wrapper = 'a'
+  else
+    assign wrapper = 'div'
+  endif
+%}
+
+<{{ wrapper }}
+  class="{{ classname }}"
+  {% if url %}
+    href="{{ url }}"
+  {% endif %}
+  {% if name %}
+    {% if url %}
+      alt="{{ name }}"
+    {% else %}
+      name="{{ name }}"
+    {% endif %}
+  {% endif %}
+>
+  <span class="mso" data-icon="{{ id }}"></span>
+</{{ wrapper }}>
+
+{% stylesheet %}
+{% endstylesheet %}

@@ -1,0 +1,52 @@
+<a class="site_logo" href="{{ routes.root_url }}">
+  {% if settings.identity_logo_light %}
+    {% assign logo = settings.identity_logo_light %}
+    {% assign logo_url = settings.identity_logo_light | img_url: 'large' %}
+
+    {% if logo contains '.svg' %}
+      {% if request.design_mode %}
+        <img
+          src="{{ logo_url }}"
+          width="{{ logo.width }}"
+          height="{{ logo.height }}"
+          alt="Logo"
+        >
+
+      {% else %}
+        <svg width="{{ logo.width }}" height="{{ logo.height }}" style="color:var(--primary-500)">
+          <use href="{{ logo_url }}"></use>
+        </svg>
+      {% endif %}
+    {% else %}
+      <img
+        src="{{ logo_url }}"
+        width="{{ logo.width }}"
+        height="{{ logo.height }}"
+        alt="Logo"
+      >
+    {% endif %}
+
+  {% else %}
+    <svg height="24" height="24" style="color:var(--primary-500)">
+      <use href="{{ 'logo.svg' | asset_url }}"></use>
+    </svg>
+  {% endif %}
+  <span> {{ settings.store_name }}</span>
+</a>
+
+{% stylesheet %}
+  .site_logo {
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+    gap: 0.5rem;
+  }
+  .site_logo svg,
+  .site_logo img {
+    height: 2rem;
+    width: auto;
+  }
+{% endstylesheet %}

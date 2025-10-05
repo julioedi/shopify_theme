@@ -1,0 +1,147 @@
+/** Critical CSS for the theme. This file is included on every page. */
+
+/* Reset styles inspired by https://www.joshwcomeau.com/css/custom-css-reset/ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* fallback */
+/* {% comment %} Liquid logic {% endcomment %} */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: var(--mso);
+}
+body{
+  background-color: var(--body);
+}
+
+.mso {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1em;
+  line-height: 1;
+  width: 1em;
+  height: 1em;
+  display: flex;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  /* -webkit-font-feature-settings: 'liga'; */
+  -webkit-font-smoothing: antialiased;
+}
+.mso.filled{
+      font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.mso[data-icon]:before{
+  content: attr(data-icon);
+}
+
+/** Theme styles below */
+body {
+  font-family: var(--font-primary--family);
+  color: var(--primary-900);
+}
+.mws{
+  max-width: var(--mws);
+  width: 100%;
+  margin: 0 auto;
+  padding-right: var(--gap);
+  padding-left: var(--gap);
+}
+
+.form_field{
+  display: flex;
+  gap: calc(var(--gap) / 2);
+  align-items: center;
+  min-height: 2.5rem;
+  position: relative;
+  padding: 0 1rem;
+}
+.form_field>*{
+  position: relative;
+}
+.form_field::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid currentColor;
+  opacity: 0.33;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 2px transparent;
+}
+.form_field:focus-within::before{
+  
+  border: 1px solid var(--primary-600);
+  opacity: 1;
+}
+.form_field .icon{
+  font-size: 1.25rem;
+}
+.form_field input.field,
+.form_field select,
+.form_field textarea{
+  flex: 1;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font: inherit;
+}
+.icon_btn{
+  width: 2em;
+  height: 2em;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:var(--primary-700);
+  cursor: pointer;
+  position: relative;
+}
+.icon_btn>*{
+  position: relative;
+}
+.icon_btn:not(.only_icon)::before{
+  position: absolute;
+  inset: 0;
+  content: "";
+  border-radius: 0.5em;
+  background-color: var(--primary-500);
+  opacity: 0.16;
+  transition: 0.1s ease all;
+  pointer-events: none;
+}
+.icon_btn:hover::before{
+  opacity: 0.24;
+  inset: -0.15em;
+}
+.icon_btn.round:before{
+  border-radius: 2em;
+}
+.icon_btn.big{
+  font-size: 2rem;
+}
+.icon_btn.big.only_icon{
+  font-size: 2.5rem;
+  width: 1em;
+  height: 1em;
+}
+.icon_btn.small{
+  font-size: 0.875rem;
+}
+.icon_btn.clean{
+  color: var(--text);
+}
+.icon_btn.clean:before{
+  background-color: currentColor;
+  opacity: 0.08;
+}
+.icon_btn.clean:hover::before{
+  opacity: 0.16;
+}
