@@ -1,0 +1,157 @@
+{% if section.blocks.size > 0 %}
+  <div id="products_slider" class="mws">
+    <div class="content_products">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        {% if product %}
+          {% assign image = product.featured_image %}
+          {% assign image_url = product.featured_image | img_url: 'large' %}
+          <div class="product">
+            <img
+              src="{{ image_url }}"
+              width="{{ image.width }}"
+              height="{{ image.height }}"
+              alt="Logo"
+              {% if forloop.first %}
+              {% else %}
+                loading="lazy"
+              {% endif %}
+            >
+            {% if forloop.first %}
+              {% assign tag = 'h1' %}
+            {% else %}
+              {% assign tag = 'h2' %}
+            {% endif %}
+            <div class="mws content">
+              <{{ tag }} class="title">{{ product.title }}</{{ tag }}>
+              <div class="desc">
+                {{ product.description }}
+              </div>
+              {% comment %} <a href="{{ product.url }}"> </a> {% endcomment %}
+              <p class="price">{{ product.price | money }}</p>
+              <a class="go btn primary" href="{{ product.url }}">
+                {{ 'product.now' | t }}
+                <span class="mso" data-icon="arrow_forward"></span>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  #products_slider {
+    margin-top: 1.5rem;
+    position: relative;
+    color: #fff;
+    padding: 0;
+  }
+  #products_slider .content_products{
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    border-radius: 1.5rem;
+    height: 75dvh;
+    max-height: 40rem;
+    position: relative;
+    scroll-behavior: smooth;
+    background-color: #000;
+  }
+  #products_slider .content_products::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  #products_slider .product {
+    flex: 0 0 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 50%;
+  }
+  #products_slider .product .content {
+    position: relative;
+    padding: 0 5rem;
+  }
+  #products_slider .product .title {
+    font-size: 2.5rem;
+  }
+  #products_slider .product .desc {
+    font-size: 1.25rem;
+  }
+  #products_slider .product .go {
+    margin-top: 1.5rem;
+  }
+  #products_slider .product .go .mso {
+    transition: var(--transition);
+  }
+  #products_slider .product .go:hover .mso {
+    transform: translateX(50%);
+  }
+  #products_slider .product img {
+    pointer-events: none;
+    position: absolute;
+    opacity: 0.66;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(0.25rem);
+    transform: scale(1.1);
+    opacity: 0.36;
+  }
+  #products_slider .nav_icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 3rem;
+  }
+  #products_slider .prev {
+    left: 0.5rem;
+  }
+  #products_slider .next {
+    right: 0.5rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Productos múltiples",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "products",
+      "name": "Producto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Selecciona un producto"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Múltiples productos",
+      "category": "Productos"
+    }
+  ]
+}
+{% endschema %}

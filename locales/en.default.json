@@ -48,5 +48,14 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "account":{
+    "title": "My Account",
+    "login": "Login",
+    "collections": "My Collections",
+    "logout": "Logout",
+  },
+  "product":{
+    "now": "Buy now"
   }
 }

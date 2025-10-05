@@ -14,7 +14,8 @@
   font-weight: 400;
   src: var(--mso);
 }
-body{
+
+body {
   background-color: var(--body);
 }
 
@@ -35,10 +36,12 @@ body{
   /* -webkit-font-feature-settings: 'liga'; */
   -webkit-font-smoothing: antialiased;
 }
-.mso.filled{
-      font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+
+.mso.filled {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
-.mso[data-icon]:before{
+
+.mso[data-icon]:before {
   content: attr(data-icon);
 }
 
@@ -47,7 +50,13 @@ body {
   font-family: var(--font-primary--family);
   color: var(--primary-900);
 }
-.mws{
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mws {
   max-width: var(--mws);
   width: 100%;
   margin: 0 auto;
@@ -55,7 +64,7 @@ body {
   padding-left: var(--gap);
 }
 
-.form_field{
+.form_field {
   display: flex;
   gap: calc(var(--gap) / 2);
   align-items: center;
@@ -63,10 +72,12 @@ body {
   position: relative;
   padding: 0 1rem;
 }
-.form_field>*{
+
+.form_field>* {
   position: relative;
 }
-.form_field::before{
+
+.form_field::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -75,17 +86,20 @@ body {
   border-radius: 0.5rem;
   box-shadow: 0 0 0 2px transparent;
 }
-.form_field:focus-within::before{
-  
+
+.form_field:focus-within::before {
+
   border: 1px solid var(--primary-600);
   opacity: 1;
 }
-.form_field .icon{
+
+.form_field .icon {
   font-size: 1.25rem;
 }
+
 .form_field input.field,
 .form_field select,
-.form_field textarea{
+.form_field textarea {
   flex: 1;
   height: 100%;
   background: transparent;
@@ -93,21 +107,47 @@ body {
   outline: none;
   font: inherit;
 }
-.icon_btn{
+
+.form_field.before {
+  padding-left: 0;
+}
+
+.form_field.before input.field,
+.form_field.before select,
+.form_field.before textarea {
+  padding-left: 2.5rem;
+}
+
+.form_field .icon_before {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon_btn {
   width: 2em;
   height: 2em;
   font-size: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color:var(--primary-700);
+  color: var(--primary-700);
   cursor: pointer;
   position: relative;
+  text-decoration: none;
 }
-.icon_btn>*{
+
+.icon_btn>* {
   position: relative;
 }
-.icon_btn:not(.only_icon)::before{
+
+.icon_btn:not(.only_icon)::before {
   position: absolute;
   inset: 0;
   content: "";
@@ -117,31 +157,66 @@ body {
   transition: 0.1s ease all;
   pointer-events: none;
 }
-.icon_btn:hover::before{
+
+.icon_btn:hover::before {
   opacity: 0.24;
   inset: -0.15em;
 }
-.icon_btn.round:before{
+
+.icon_btn.round:before {
   border-radius: 2em;
 }
-.icon_btn.big{
+
+.icon_btn.big {
   font-size: 2rem;
 }
-.icon_btn.big.only_icon{
+
+.icon_btn.big.only_icon {
   font-size: 2.5rem;
   width: 1em;
   height: 1em;
 }
-.icon_btn.small{
+
+.icon_btn.small {
   font-size: 0.875rem;
 }
-.icon_btn.clean{
+
+.icon_btn.clean {
   color: var(--text);
 }
-.icon_btn.clean:before{
+
+.icon_btn.clean:before {
   background-color: currentColor;
   opacity: 0.08;
 }
-.icon_btn.clean:hover::before{
+
+.icon_btn.clean:hover::before {
   opacity: 0.16;
+}
+
+.btn {
+  padding: var(--btn-h, 0.75rem) var(--btn-v, 1.5rem);
+  border-radius: var(--btn-r, 0.5rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.5rem;
+  transition: var(--transition);
+}
+
+.btn .mso {
+  font-size: 1.25rem;
+}
+
+.btn.light {
+  background-color: var(--primary-50);
+  color: var(--primary-700);
+  font-weight: 600;
+}
+.btn.primary{
+  background-color: var(--primary-500);
+  color: #fff;
+}
+.btn.primary:hover{
+  background-color: var(--primary-400);
 }

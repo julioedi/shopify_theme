@@ -33,6 +33,9 @@
     "theme": "Theme",
     "typography": "Typography"
   },
+  "pages":{
+    "home": "Home page",
+  },
   "colors":{
     "title": "Color Scheme",
     "primary": "Primary",

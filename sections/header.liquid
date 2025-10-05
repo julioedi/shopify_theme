@@ -7,29 +7,67 @@
     </div>
     <div class="right_header">
       {% render 'form-search' %}
-      {% render 'form-icon-button', id: 'favorite' %}
-      {% render 'form-icon-button', id: 'shopping_bag' %}
+      {% if customer %}
+        {% render 'form-icon-button', id: 'favorite' %}
+        {% render 'form-icon-button', id: 'shopping_bag' %}
+      {% endif %}
       <div class="account">
-      {% render 'form-icon-button'| id:"account_circle" | rounded:true | class:"big only_icon" %}
+        {% if customer %}
+          {% assign email_hash = customer.email | downcase | strip | md5 %}
+          <img
+            src="https://www.gravatar.com/avatar/{{ email_hash }}?s=100&d=identicon"
+            alt="Avatar de {{ customer.first_name }}"
+            width="96"
+            height="96"
+          >
+          <div class="account_options">
+            <ul class="list">
+              <li>
+                <a href="{{ routes.account_url }}">
+                  <i class="mso" data-icon="face"></i>
+                  <span>{{ 'account.title' | t }}</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ routes.collections_url  }}">
+                  <i class="mso" data-icon="collections_bookmark"></i>
+                  <span>{{ 'account.collections' | t }}</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ routes.account_logout_url  }}">
+                  <i class="mso" data-icon="exit_to_app"></i>
+                  <span>{{ 'account.logout' | t }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        {% else %}
+          <a class="btn light" href="{{ routes.account_register_url }}">
+            <i class="mso" data-icon="account_circle"></i>
+            <span>{{ 'account.login' | t }}</span>
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
 </header>
 
 {% stylesheet %}
-  body{
-    padding-top:5rem;
+  body {
+    padding-top: 5rem;
   }
   #header {
-    background-color: rgba(255,255,255,0.66);
+    background-color: rgba(255, 255, 255, 0.66);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
     backdrop-filter: blur(1rem);
+    z-index: 99999;
   }
-  #header .form_field.search{
+  #header .form_field.search {
     background-color: #fff;
   }
   #header .content {
@@ -42,6 +80,58 @@
     display: flex;
     align-items: center;
     gap: var(--gap);
+  }
+  #header .account {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #header .account_options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding-top: 3.5rem;
+    width: max-content;
+    z-index: 999999;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+  }
+  #header .account:hover .account_options {
+    pointer-events: all;
+    top: 0%;
+    opacity: 1;
+  }
+  #header .account_options .list {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    padding: 0.5rem;
+    background: var(--body);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 4px 24px -16px var(--primary-700);
+    list-style: none;
+  }
+  #header .account_options .list li {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+  #header .account_options .list li:hover {
+    background: var(--primary-50);
+    color: var(--primary-700);
+  }
+  #header .account_options .list li a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  #header .account img {
+    font-size: 2.5rem;
+    width: 1em;
+    height: 1em;
+    border-radius: 1em;
   }
 {% endstylesheet %}
 
